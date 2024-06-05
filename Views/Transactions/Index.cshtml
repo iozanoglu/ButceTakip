@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ButceTakip.Models.Transaction>
+
+@{
+    ViewData["PageTitle"] = "Gelir-Gider Tablosu";
+    ViewData["PageActionText"] = "+ Yeni Kayıt";
+    ViewData["PageActionUrl"] = "/Transactions/AddOrEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="">
+        <ejs-grid id="transactions" dataSource="@Model" gridLines="None"
+                  allowSorting="true" allowPaging="true">
+            <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
+            <e-grid-columns>
+                <e-grid-column headerText="Kategori" field="CategoryTitleWithIcon" width="200px"></e-grid-column>
+                <e-grid-column headerText="Tarih" field="Date" width="110px"
+                               type="Date" format="dd-MM-yyyy" textAlign="Center"></e-grid-column>
+                <e-grid-column headerText="Miktar" field="FormattedAmount" textAlign="Right" width="110px"></e-grid-column>
+                <e-grid-column headerText="İşlemler" template="#actionColumnTemplate" width="110px"></e-grid-column>
+                <e-grid-column headerText="Not" field="Note" textAlign="Left"></e-grid-column>
+            </e-grid-columns>
+        </ejs-grid>
+
+     </div>
+    @*<div class="col-md-5">
+        <div class="widget h-100 d-flex justify-content-center align-items-center">
+            <i class="fa-solid fa-money-bill-transfer fa-2xl"></i>
+        </div>
+    </div>
+    </div> *@
+<script id="actionColumnTemplate" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start">
+                <a class="btn btn-sm no-a-decoration" href="/Transactions/AddOrEdit/${TransactionId}">
+            <i class="fa-solid fa-pen fa-lg"></i>
+        </a>
+        <form action="/Transactions/Delete/${TransactionId}" method="post">
+    @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm btn-link no-a-decoration"
+            onclick="return confirm(&quot;Bu kaydı silmek istediğinize emin misiniz ?&quot;)">
+                <i class="fa-solid fa-trash-can fa-lg text-danger"></i>
+            </button>
+        </form>
+    </div>
+</script>
+
+
