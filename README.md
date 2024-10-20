@@ -1,0 +1,2 @@
+This project is a web-based Budget Tracking Application developed using the MVC architecture. Users can input their monthly income and expenses, and track their budget status and spending ratios through a visual dashboard. 
+After entering income and expense data, users can view spending distributions by category and their overall budget status on the dashboard.The backend is developed with C#, while the frontend is designed using HTML, CSS, and JavaScript.
